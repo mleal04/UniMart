@@ -4,8 +4,11 @@ from rest_framework import status
 from .models import User
 from .serializers import UserSerializer
 
-@api_view(['POST'])
+#we make a request @ the url that holds our data
+#this server will grab the necessary data
+@api_view(['POST']) #we need to add data to the database 
 def signup(request):
+    #serialize the incoming user
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
