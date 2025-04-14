@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aijn5k-q)$@s@bh4c-(-4)0r$)r+j7s91k8w&n7f149z!-tc1j'
+SECRET_KEY = 'django-insecure-9^tmz9mqf#uc4ceau0q5k6s1gt#wuyw5=uf7kp-8&8g^d=&@9+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app',  # Change this to your app name
+    'rest_framework',  # Django REST framework
+    'corsheaders',  # CORS headers
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # CORS middleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'uniMart_back.urls'
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
