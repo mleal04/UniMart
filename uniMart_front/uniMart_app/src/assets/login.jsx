@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -28,7 +28,8 @@ const Login = () => {
 
       if (response.ok) {
         alert("User registered successfully!");
-        navigate("/home");
+        localStorage.setItem("username", formData.username);
+        navigate("/home", { state: { user: formData } });
       } else {
         alert("Registration failed.");
       }

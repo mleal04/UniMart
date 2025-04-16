@@ -27,4 +27,11 @@ def login(request):
     except User.DoesNotExist:
         return Response({'message': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
-
+@api_view(['GET']) 
+def say_hi(request):
+    #return the name of the user we want to greet 
+    try:
+        user = User.objects.get(username=request.query_params['username'])
+        return Response({'message': {user.name}}, status=status.HTTP_200_OK)
+    except User.DoesNotExist:
+        return Response({'message': 'User does not exist'}, status=status.HTTP_404_NOT_FOUND)
