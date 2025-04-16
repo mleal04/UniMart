@@ -4,7 +4,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 const User = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const username = location.state?.username || "";
+  const username =
+    location.state?.username || localStorage.getItem("username") || "";
 
   const [greeting, setGreeting] = useState("...");
 
@@ -35,6 +36,18 @@ const User = () => {
     <div>
       <h1>Hello {greeting}</h1>
       <p>Welcome to the User component!</p>
+      <div>user card : {greeting}</div>
+      <p>
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/home/user/userinfo");
+          }}
+        >
+          add to you personal card
+        </a>
+      </p>
       <p>
         <a
           href="#"
