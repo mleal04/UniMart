@@ -1,10 +1,11 @@
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  //use navigate
   const navigate = useNavigate();
-  const location = useLocation();
-  const user = location.state?.user || {
+  //grab the necessary items from local storage 
+  const user =  {
     username: localStorage.getItem("username"),
   };
 
@@ -19,7 +20,7 @@ const Home = () => {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            navigate("/home/user", { state: { username: user.username } });
+            navigate("/home/user");
           }}
         >
           User-Profile

@@ -8,6 +8,7 @@ class User(models.Model):
 
 class userCard(models.Model):
     full_name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True, default='temp_username')
     email = models.EmailField(unique=True)
     university = models.CharField(max_length=100)
     major = models.CharField(max_length=100)

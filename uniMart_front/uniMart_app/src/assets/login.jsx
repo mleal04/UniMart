@@ -2,18 +2,25 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const user2 =  {
+    email: localStorage.getItem("email"),
+  };
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    email: user2.email,
   });
+  //create a fucntion to use the data changed by the user
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
-  //handle submission
+  //create a fucntion to handle the submission even 
+  // 1. sending the api requrest to the backend 
+  //2. taking action based on the response 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -28,7 +35,9 @@ const Login = () => {
 
       if (response.ok) {
         alert("User registered successfully!");
+        //store the username in local storage 
         localStorage.setItem("username", formData.username);
+        //redirect the user to the home page
         navigate("/home", { state: { user: formData } });
       } else {
         alert("Registration failed.");

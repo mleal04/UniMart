@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  //necessary fucntions for REST API
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -32,6 +33,7 @@ const SignUp = () => {
 
       if (response.ok) {
         alert("User registered successfully!");
+        //store the email in local storage
         navigate("/");
       } else {
         alert("Registration failed.");
@@ -41,6 +43,7 @@ const SignUp = () => {
     }
   };
 
+  //the start of the frontend page 
   return (
     <div className="sign-up">
       <h1>Sign Up</h1>
@@ -73,7 +76,7 @@ const SignUp = () => {
         <a
           href="#"
           onClick={(e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevents page from reloading when form is submitted
             navigate("/");
           }}
         >

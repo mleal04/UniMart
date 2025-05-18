@@ -33,6 +33,7 @@ const AddingInfo = () => {
       });
       if (response.ok) {
         alert("User info added successfully!");
+        localStorage.setItem("email", formData.email);
         navigate("/home/user");
       } else {
         alert("Failed to add user info.");
