@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const user2 =  {
-    email: localStorage.getItem("email"),
-  };
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    email: user2.email,
   });
   //create a fucntion to use the data changed by the user
   const handleChange = (e) => {

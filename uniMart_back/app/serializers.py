@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, userCard
+from .models import User, userCard, ItemPost
 
 #make incoming data into the format used by the database 
 class UserSerializer(serializers.ModelSerializer):
@@ -10,4 +10,9 @@ class UserSerializer(serializers.ModelSerializer):
 class UserCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = userCard
+        fields = '__all__'
+
+class ItemPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemPost
         fields = '__all__'

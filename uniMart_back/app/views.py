@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import User, userCard
-from .serializers import UserSerializer, UserCardSerializer
+from .models import User, userCard, ItemPost
+from .serializers import UserSerializer, UserCardSerializer, ItemPostSerializer
 
 #adding the user to the database for the first time
 @api_view(['POST']) 
@@ -31,7 +31,6 @@ def login(request):
 @api_view(['POST']) 
 def say_hi(request):
     username = request.data.get('username')
-    print(username)
     if not username:
         return Response({'message': 'need username'}, status=400)
 
@@ -39,6 +38,8 @@ def say_hi(request):
         userpost = userCard.objects.get(username=username)
         return Response({
             'full_name': userpost.full_name, 
+            'username': userpost.username,
+            'email': userpost.email,
             'university': userpost.university, 
             'major': userpost.major,
             'graduation': userpost.graduation_year,
@@ -74,4 +75,22 @@ def user_info(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+#this is to submit a new item
+@api_view(['POST'])
+def submit(request):
+    serializer = ItemPostSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_items(request):
+    items = ItemPost.objects.all() # Optional: newest first
+    serializer = ItemPostSerializer(items, many=True)
+    return Response(serializer.data)
+
+
 

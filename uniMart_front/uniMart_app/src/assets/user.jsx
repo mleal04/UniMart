@@ -52,11 +52,24 @@ const User = () => {
           <div>
             <h2>Your Card</h2>
             <p><strong>Name:</strong> {userCard.full_name}</p>
+            <p><strong>Username:</strong> {userCard.username}</p>
             <p><strong>Email:</strong> {userCard.email}</p>
             <p><strong>University:</strong> {userCard.university}</p>
             <p><strong>Major:</strong> {userCard.major}</p>
             <p><strong>Graduation Year:</strong> {userCard.graduation}</p>
             <p><strong>Fun Fact:</strong> {userCard.fun_fact}</p>
+            <p>{message}</p>
+            <p>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/home/user/userinfo");
+                }}
+              >
+                Change your personal card
+              </a>
+            </p>
           </div>
         ) : (
           <div>
